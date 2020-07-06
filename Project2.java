@@ -7,7 +7,7 @@ import java.util.*;
 // we use the class keyword to denote an OBJECT
 // an object is simply a collection of PROPERTIES (variables)
 // and METODS (functions) that relate to each other
-public class Project1_1 {
+public class Project2 {
 
   // all of our Java programs will have a "main method"
   // this is the ENTRY POINT of our program
@@ -22,7 +22,7 @@ public class Project1_1 {
 
     // a standard Java method for output of a STRING LITERAL
     // the \n denotes a "carriage return" - or blank line
-    System.out.println("-- Project1_1 --");
+    System.out.println("-- Project2 --");
 
     System.out.println("Enter your full name:");
     String name = user_input.nextLine();
