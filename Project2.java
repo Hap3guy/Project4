@@ -24,6 +24,14 @@ public class Project2 {
     // the \n denotes a "carriage return" - or blank line
     System.out.println("-- Project2 --");
 
+    String[] hi = {"Hello!", "Hi!", "Greetings!", "Good morning!", "Good afternoon!", "Good evening!"};
+    System.out.println("Choose a greeting:");
+    System.out.println(" 1 Hello!\n 2 Hi!\n 3 Greetings!\n 4 Good morning!\n 5 Good afternoon!\n 6 Good evening!");
+    String greet = user_input.nextLine();
+
+    int greetint = Integer.parseInt(greet);
+    greet = hi[greetint - 1];
+
     System.out.println("Enter your full name:");
     String name = user_input.nextLine();
 
@@ -40,7 +48,7 @@ public class Project2 {
     String other = user_input.nextLine();
 
     System.out.println("Here is your message to send to all your friends:\n");
-    System.out.println("Hello!\n\n   My name is " + name + " and I like eating " + food + " while petting " + color + " " + animal + ". One final thing that I would like to tell you is that " + other + ".\n\nAdios!\n~" + name);
+    System.out.println(greet + "\n\n   My name is " + name + " and I like eating " + food + " while petting " + color + " " + animal + ". One final thing that I would like to tell you is that " + other + ".\n\nAdios!\n~" + name);
 
   }
 }
