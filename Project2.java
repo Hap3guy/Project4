@@ -25,12 +25,18 @@ public class Project2 {
     System.out.println("-- Project2 --");
 
     String[] hi = {"Hello!", "Hi!", "Greetings!", "Good morning!", "Good afternoon!", "Good evening!"};
-    System.out.println("Choose a greeting:");
+    System.out.println("Choose a greeting (or hit enter for default):");
     System.out.println(" 1 Hello!\n 2 Hi!\n 3 Greetings!\n 4 Good morning!\n 5 Good afternoon!\n 6 Good evening!");
     String greet = user_input.nextLine();
+    int greetDefault = 0;
 
-    int greetint = Integer.parseInt(greet);
-    greet = hi[greetint - 1];
+    if (greet == "1" || greet == "2" || greet == "3" || greet == "4" || greet == "5" || greet == "6") {
+      int greetInt = Integer.parseInt(greet);
+      greet = hi[greetInt - 1];
+    } else {
+      greet = hi[greetDefault];
+    }
+
 
     System.out.println("Enter your full name:");
     String name = user_input.nextLine();
