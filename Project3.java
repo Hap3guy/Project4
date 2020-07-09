@@ -20,7 +20,7 @@ public class Project2 {
 
     // a standard Java method for output of a STRING LITERAL
     // the \n denotes a "carriage return" - or blank line
-    System.out.println("-- Project2 --");
+    System.out.println("-- Project3 --");
     System.out.println("\nYou are creating an email that you can copy & paste to your friends...\n");
     
     while (true) {
