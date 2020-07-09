@@ -23,6 +23,7 @@ public class Project2 {
     // a standard Java method for output of a STRING LITERAL
     // the \n denotes a "carriage return" - or blank line
     System.out.println("-- Project2 --");
+    System.out.println("\nYou are creating an email that you can copy & paste to your friends...\n");
 
     String[] hi = {"Hello!", "Hi!", "Greetings!", "Good morning!", "Good afternoon!", "Good evening!"};
     System.out.println("Choose a greeting (or hit enter for default):");
@@ -30,13 +31,12 @@ public class Project2 {
     String greet = user_input.nextLine();
     int greetDefault = 0;
 
-    if (greet == "1" || greet == "2" || greet == "3" || greet == "4" || greet == "5" || greet == "6") {
+    if (greet.matches("^[1-6]$")) {
       int greetInt = Integer.parseInt(greet);
       greet = hi[greetInt - 1];
     } else {
       greet = hi[greetDefault];
     }
-
 
     System.out.println("Enter your full name:");
     String name = user_input.nextLine();
@@ -53,8 +53,21 @@ public class Project2 {
     System.out.println("Enter something else you want to tell someone special (no exclamations or questions):");
     String other = user_input.nextLine();
 
+    String[] bye = {"Bye!", "Goodbye!", "Have a good day!", "Adios!", "See ya!", "Take care!"};
+    System.out.println("Choose a farewell (or hit enter for default):");
+    System.out.println(" 1 Bye!\n 2 Goodbye!\n 3 Have a good day!\n 4 Adios!\n 5 See ya!\n 6 Take care!");
+    String farewell = user_input.nextLine();
+    int farewellDefault = 0;
+
+    if (greet.matches("^[1-6]$")) {
+      int farewellInt = Integer.parseInt(farewell);
+      farewell = bye[farewellInt - 1];
+    } else {
+      farewell = bye[farewellDefault];
+    }
+
     System.out.println("Here is your message to send to all your friends:\n");
-    System.out.println(greet + "\n\n   My name is " + name + " and I like eating " + food + " while petting " + color + " " + animal + ". One final thing that I would like to tell you is that " + other + ".\n\nAdios!\n~" + name);
+    System.out.println(greet + "\n\n   My name is " + name + " and I like eating " + food + " while petting " + color + " " + animal + ". One final thing that I would like to tell you is that " + other + ".\n\n" + farewell + "\n~" + name);
 
   }
 }
