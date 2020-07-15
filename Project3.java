@@ -5,7 +5,7 @@ import java.util.*;
 // we use the class keyword to denote an OBJECT
 // an object is simply a collection of PROPERTIES (variables)
 // and METODS (functions) that relate to each other
-public class Project2 {
+public class Project3 {
 
   // all of our Java programs will have a "main method"
   // this is the ENTRY POINT of our program
