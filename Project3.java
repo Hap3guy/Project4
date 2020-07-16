@@ -13,16 +13,51 @@ public class Project3 {
   // - public: denotes the access permissions for other objects
   // - static: denotes procedural style code (i.e., not Object Oriented)
   // - void: the return type of the method (in this case NOTHING)
-  public static void main(String[] args) {
 
-    // initialize a variable of type OBJECT Scanner and call its CONSTRUCTOR with the System.in parameter)
+  // initialize a variable of type OBJECT Scanner and call its CONSTRUCTOR with the System.in parameter)
+  static String input() {
+    Scanner user_input = new Scanner(System.in);
+    return user_input.nextLine();
+  }
+
+  static int testForInt(String input, String regExPattern, int defaultInt) {
+    if (input.matches(regExPattern)) {
+      return Integer.parseInt(input);
+    } else {
+      return defaultInt;
+    }
+  }
+
+  static String getWord(String type, int amount) {
+    if (amount == 1) {
+      System.out.println("Enter a " + type + ":");
+    } else if (amount >= 2) {
+      System.out.println("Enter " + amount + " " + type + "s:");
+    } else {
+      System.out.println("Error: Invalid amount in getWord()");
+    }
+    return input();
+  }
+
+  static String itemPicker(String message, String[] items) {
+    System.out.println(message);
+    for (String i : items) {
+      System.out.println(i);
+    }
+    return input();   
+  }
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+  public static void main(String[] args) {
     Scanner user_input = new Scanner(System.in);
 
     // a standard Java method for output of a STRING LITERAL
     // the \n denotes a "carriage return" - or blank line
     System.out.println("-- Project3 --");
+
     System.out.println("\nYou are creating an email that you can copy & paste to your friends...\n");
-    
+
     while (true) {
       String[] hi = {"Hello!", "Hi!", "Greetings!", "Good morning!", "Good afternoon!", "Good evening!"};
       System.out.println("Choose a greeting (or hit enter for default):");
@@ -68,7 +103,7 @@ public class Project3 {
       System.out.println("Here is your message to send to all your friends:\n");
       System.out.println(greet + "\n\n   My name is " + name + " and I like eating " + food + " while petting " + color + " " + animal + ". One final thing that I would like to tell you is that " + other + ".\n\n" + farewell + "\n~" + name);
 
-      System.out.println("\n\nHit enter to write another message or a key + enter to exit");
+      System.out.println("\n\nHit enter to write another message or key(s) + enter to exit");
       String loop = user_input.nextLine();
       if (loop.matches("^$")) {
         continue;
