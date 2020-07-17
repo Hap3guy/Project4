@@ -50,7 +50,6 @@ public class Project3 {
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
   public static void main(String[] args) {
-    Scanner user_input = new Scanner(System.in);
 
     // a standard Java method for output of a STRING LITERAL
     // the \n denotes a "carriage return" - or blank line
@@ -62,20 +61,15 @@ public class Project3 {
       String[] hi = {"Hello!", "Hi!", "Greetings!", "Good morning!", "Good afternoon!", "Good evening!"};
       String greet = hi[testForInt(itemPicker("Choose a greeting (or hit enter for default):", hi), "^[1-6]$", 1) - 1];
 
-      System.out.println("Enter your full name:");
-      String name = user_input.nextLine();
+      String name = getWord("full name", 1);
 
-      System.out.println("Enter your favorite color");
-      String color = user_input.nextLine();
+      String color = getWord("color", 1);
       
-      System.out.println("Enter your favorite food:");
-      String food = user_input.nextLine();
+      String food = getWord("favorite food", 1);
 
-      System.out.println("Enter your favorite animal (PLURAL):");
-      String animal = user_input.nextLine();
+      String animal = getWord("favorite animal (PLURAL)", 1);
 
-      System.out.println("Enter something else you want to tell someone special (no exclamations or questions):");
-      String other = user_input.nextLine();
+      String other = "I have a " + getWord("adjective", 1) + " " + getWord("noun", 1);
 
       String[] bye = {"Bye!", "Goodbye!", "Have a good day!", "Adios!", "See ya!", "Take care!"};
       String farewell = bye[testForInt(itemPicker("Choose a farewell (or hit enter for default):", bye), "^[1-6]$", 1) - 1];
@@ -85,7 +79,7 @@ public class Project3 {
       System.out.println(greet + "\n\n   My name is " + name + " and I like eating " + food + " while petting " + color + " " + animal + ". One final thing that I would like to tell you is that " + other + ".\n\n" + farewell + "\n~" + name);
 
       System.out.println("\n\nHit enter to write another message or key(s) + enter to exit");
-      String loop = user_input.nextLine();
+      String loop = input();
       if (loop.matches("^$")) {
         continue;
       } else {
