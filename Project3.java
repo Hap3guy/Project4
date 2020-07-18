@@ -1,20 +1,7 @@
-// the import keyword is used to load in additional Java PACKAGE code for our programs
-// in this case, we are loading in the standard "util" package for the Scanner class
 import java.util.*;
 
-// we use the class keyword to denote an OBJECT
-// an object is simply a collection of PROPERTIES (variables)
-// and METODS (functions) that relate to each other
 public class Project3 {
 
-  // all of our Java programs will have a "main method"
-  // this is the ENTRY POINT of our program
-  // the keywords prior to main:
-  // - public: denotes the access permissions for other objects
-  // - static: denotes procedural style code (i.e., not Object Oriented)
-  // - void: the return type of the method (in this case NOTHING)
-
-  // initialize a variable of type OBJECT Scanner and call its CONSTRUCTOR with the System.in parameter)
   static String input() {
     Scanner user_input = new Scanner(System.in);
     return user_input.nextLine();
@@ -28,21 +15,25 @@ public class Project3 {
     }
   }
 
-  static String getWord(String type, int amount) {
-    if (amount == 1) {
-      System.out.println("Enter a " + type + ":");
-    } else if (amount >= 2) {
-      System.out.println("Enter " + amount + " " + type + "s:");
+  static String testArticle(String nextWord) {
+    System.out.println(nextWord.charAt(0));
+    System.out.println(nextWord.equals("\b[aeiou]"));
+    if (nextWord.matches("\b[aeiou]")) {
+      return "an " + nextWord;
     } else {
-      System.out.println("Error: Invalid amount in getWord()");
+      return "a " + nextWord;
     }
+  }
+
+  static String getWord(String type) {
+    System.out.println("Enter " + testArticle(type) + ":");
     return input();
   }
 
-  static String itemPicker(String message, String[] items) {
+  static String itemPicker(String message, String[] itemArray) {
     System.out.println(message);
-    for (String i : items) {
-      System.out.println(" " + (Arrays.asList(items).indexOf(i) + 1) + " " + i);
+    for (String i : itemArray) {
+      System.out.println(" " + (Arrays.asList(itemArray).indexOf(i) + 1) + " " + i);
     }
     return input();   
   }
@@ -61,15 +52,15 @@ public class Project3 {
       String[] hi = {"Hello!", "Hi!", "Greetings!", "Good morning!", "Good afternoon!", "Good evening!"};
       String greet = hi[testForInt(itemPicker("Choose a greeting (or hit enter for default):", hi), "^[1-6]$", 1) - 1];
 
-      String name = getWord("full name", 1);
+      String name = getWord("full name");
 
-      String color = getWord("color", 1);
+      String color = getWord("color");
       
-      String food = getWord("favorite food", 1);
+      String food = getWord("favorite food");
 
-      String animal = getWord("favorite animal (PLURAL)", 1);
+      String animal = getWord("favorite animal (PLURAL)");
 
-      String other = "I have a " + getWord("adjective", 1) + " " + getWord("noun", 1);
+      String other = "I have a " + getWord("adjective") + " " + getWord("noun");
 
       String[] bye = {"Bye!", "Goodbye!", "Have a good day!", "Adios!", "See ya!", "Take care!"};
       String farewell = bye[testForInt(itemPicker("Choose a farewell (or hit enter for default):", bye), "^[1-6]$", 1) - 1];
