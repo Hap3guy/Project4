@@ -4,7 +4,7 @@ public class Project3 {
 
   static String input() {
     Scanner user_input = new Scanner(System.in);
-    return user_input.nextLine();
+    return user_input.nextLine().trim();
   }
 
   static int testForInt(String input, String regExPattern, int defaultInt) {
@@ -15,10 +15,12 @@ public class Project3 {
     }
   }
 
+  static String capFirstChar(String input) {
+    return input.substring(0, 1).toUpperCase() + input.substring(1).toLowerCase();
+  }
+
   static String testArticle(String nextWord) {
-    System.out.println(nextWord.charAt(0));
-    System.out.println(nextWord.equals("\b[aeiou]"));
-    if (nextWord.matches("\b[aeiou]")) {
+    if (nextWord.matches("^[aeiou].*$")) {
       return "an " + nextWord;
     } else {
       return "a " + nextWord;
@@ -27,7 +29,27 @@ public class Project3 {
 
   static String getWord(String type) {
     System.out.println("Enter " + testArticle(type) + ":");
-    return input();
+    ArrayList<String> errors = new ArrayList<String>();
+    while (true) {
+      String testMe = input();
+      if (testMe.matches("^[a-zA-Z]+$")) {
+        return testMe.toLowerCase();
+      }
+      if (testMe.matches("^.*[^a-z].*$")) {
+        errors.add("only A through Z characters");
+      }
+      if (testMe.matches("^.*[\\s].*$")) {
+        errors.add("only 1 word");
+      }
+      if (testMe.matches("^$")) {
+        errors.add("typing anything at all");
+      }
+      System.out.println("Oops! Your answer doesn't look quite right");
+      if (!errors.isEmpty()) {
+        System.out.println("(Check for " + errors.toString().replace("[","").replace("]","") + ")");
+      }
+      errors.clear();
+    }
   }
 
   static String itemPicker(String message, String[] itemArray) {
@@ -42,8 +64,6 @@ public class Project3 {
 
   public static void main(String[] args) {
 
-    // a standard Java method for output of a STRING LITERAL
-    // the \n denotes a "carriage return" - or blank line
     System.out.println("-- Project3 --");
 
     System.out.println("\nYou are creating an email that you can copy & paste to your friends...\n");
@@ -52,7 +72,7 @@ public class Project3 {
       String[] hi = {"Hello!", "Hi!", "Greetings!", "Good morning!", "Good afternoon!", "Good evening!"};
       String greet = hi[testForInt(itemPicker("Choose a greeting (or hit enter for default):", hi), "^[1-6]$", 1) - 1];
 
-      String name = getWord("full name");
+      String name = capFirstChar(getWord("first name")) + " " + capFirstChar(getWord("last name"));
 
       String color = getWord("color");
       
