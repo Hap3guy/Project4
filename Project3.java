@@ -32,10 +32,10 @@ public class Project3 {
     ArrayList<String> errors = new ArrayList<String>();
     while (true) {
       String testMe = input();
-      if (testMe.matches("^[\\s\-a-zA-Z]+$")) {
+      if (testMe.matches("^[-\\sa-zA-Z]+$")) {
         return testMe.toLowerCase();
       }
-      if (testMe.matches("^.*[^\\s\-a-z].*$")) {
+      if (testMe.matches("^.*[^-\\sa-z].*$")) {
         errors.add("only A through Z characters");
       }
       if (testMe.matches("^$")) {
