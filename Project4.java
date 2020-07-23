@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Project3 {
+public class Project4 {
 
   static String input() {
     Scanner user_input = new Scanner(System.in);
@@ -61,7 +61,7 @@ public class Project3 {
 
   public static void main(String[] args) {
 
-    System.out.println("-- Project3 --");
+    System.out.println("-- Project4 --");
 
     System.out.println("\nYou are creating an email that you can copy & paste to your friends...\n");
 
