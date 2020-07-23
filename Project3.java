@@ -32,19 +32,16 @@ public class Project3 {
     ArrayList<String> errors = new ArrayList<String>();
     while (true) {
       String testMe = input();
-      if (testMe.matches("^[a-zA-Z]+$")) {
+      if (testMe.matches("^[\\s\-a-zA-Z]+$")) {
         return testMe.toLowerCase();
       }
-      if (testMe.matches("^.*[^a-z].*$")) {
+      if (testMe.matches("^.*[^\\s\-a-z].*$")) {
         errors.add("only A through Z characters");
-      }
-      if (testMe.matches("^.*[\\s].*$")) {
-        errors.add("only 1 word");
       }
       if (testMe.matches("^$")) {
         errors.add("typing anything at all");
       }
-      System.out.println("Oops! Your answer doesn't look quite right");
+      System.out.println("Oops! Your answer doesn't look quite right.");
       if (!errors.isEmpty()) {
         System.out.println("(Check for " + errors.toString().replace("[","").replace("]","") + ")");
       }
@@ -80,7 +77,7 @@ public class Project3 {
 
       String animal = getWord("favorite animal (PLURAL)");
 
-      String other = "I have a " + getWord("adjective") + " " + getWord("noun");
+      String other = "I have " + testArticle(getWord("adjective")) + " " + getWord("noun");
 
       String[] bye = {"Bye!", "Goodbye!", "Have a good day!", "Adios!", "See ya!", "Take care!"};
       String farewell = bye[testForInt(itemPicker("Choose a farewell (or hit enter for default):", bye), "^[1-6]$", 1) - 1];
@@ -89,7 +86,7 @@ public class Project3 {
       System.out.println("Here is your message to send to all your friends:\n");
       System.out.println(greet + "\n\n   My name is " + name + " and I like eating " + food + " while petting " + color + " " + animal + ". One final thing that I would like to tell you is that " + other + ".\n\n" + farewell + "\n~" + name);
 
-      System.out.println("\n\nHit enter to write another message or key(s) + enter to exit");
+      System.out.println("\n\nHit enter to write another message or key(s) + enter to exit the program");
       String loop = input();
       if (loop.matches("^$")) {
         continue;
