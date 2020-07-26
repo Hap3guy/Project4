@@ -5,7 +5,7 @@ class Account {
   private String lastname;
   private String email;
   private String password;
-  private String[] info;
+  private String[] info = {"firstname", "lastname", "email", "password"};
 
   public void setFirstname(String fn) {
     firstname = fn;
@@ -37,4 +37,7 @@ class Account {
     setPassword(p);
     setInfo();
   }
+
+  
+
 };
