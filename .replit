@@ -1,2 +1,2 @@
 language = "bash"
-run = "javac Project4.java && java Project4"
+run = "javac *.java && java Main"
