@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 
 class Main {
 
@@ -88,7 +89,36 @@ class Main {
     }
   }
 
+  public static void createDataFile() {
+    try {
+      File myObj = new File("datafile.txt");
+      if (myObj.createNewFile()) {
+        System.out.println("File created: " + myObj.getName());
+      } else {
+        // System.out.println("File already exists.");
+      }
+    } catch (IOException e) {
+      System.out.println("An error occurred while trying to create a file.");
+      e.printStackTrace();
+    }
+  }
+
+  public static void updateDataFile() {
+    try {
+      FileWriter myWriter = new FileWriter("datafile.txt");
+      for (Account i : accounts) {
+        myWriter.write(Arrays.toString(i.getInfo()));
+      }
+      myWriter.close();
+      System.out.println("Updated datafile.txt");
+    } catch (IOException e) {
+      System.out.println("Unable to update datafile.txt");
+      e.printStackTrace();
+    }
+  }
+
   public static void createAccount() {
+    createDataFile();
     accounts.add(new Account(getWord("first name"), getWord("last name"), getEmail(), getPassword()));
     System.out.println("Account created successfully!");
     input();

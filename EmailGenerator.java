@@ -1,5 +1,3 @@
-// import java.util.*;
-
 class EmailGenerator{
 
   private String firstname;
