@@ -1,6 +1,3 @@
-import java.util.*;
-import java.io.*;
-
 class Account {
   
   private String firstname;
@@ -11,18 +8,23 @@ class Account {
 
   public void setFirstname(String fn) {
     firstname = fn;
+    info[0] = fn;
+
   }
 
   public void setLastname(String ln) {
     lastname = ln;
+    info[1] = ln;
   }
 
   public void setEmail(String e) {
     email = e;
+    info[2] = e;
   }
 
   public void setPassword(String p) {
     password = p;
+    info[3] = p;
   }
 
   public void setInfo() {
@@ -41,7 +43,6 @@ class Account {
     setLastname(ln);
     setEmail(e);
     setPassword(p);
-    setInfo();
   }
 
   private String getFirstname() {
@@ -60,12 +61,11 @@ class Account {
     return password;
   }
 
-  // public void printAccount() {
-  //   System.out.println( + getFirstname());
-  //   System.out.println( + getLastname());
-  //   System.out.println( + getEmail());
-  //   System.out.println( + getPassword());
-  // }
-  
+  public void printAccount() {
+    System.out.println("First name: " + getFirstname());
+    System.out.println("Last name: " + getLastname());
+    System.out.println("Email: " + getEmail());
+    System.out.println("Password: " + getPassword());
+  }
 
 };
