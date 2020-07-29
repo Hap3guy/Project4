@@ -1,10 +1,10 @@
 class Account {
   
-  private String firstname;
-  private String lastname;
-  private String email;
-  private String password;
-  private String[] info = {"firstname", "lastname", "email", "password"};
+  protected String firstname;
+  protected String lastname;
+  protected String email;
+  protected String password;
+  protected String[] info = {"firstname", "lastname", "email", "password"};
 
   public void setFirstname(String fn) {
     firstname = fn;
@@ -38,26 +38,26 @@ class Account {
     return info;
   }
 
-  Account(String fn, String ln, String e, String p) {
+  public Account(String fn, String ln, String e, String p) {
     setFirstname(fn);
     setLastname(ln);
     setEmail(e);
     setPassword(p);
   }
 
-  private String getFirstname() {
+  protected String getFirstname() {
     return firstname;
   }
 
-  private String getLastname() {
+  protected String getLastname() {
     return lastname;
   }
 
-  private String getEmail() {
+  protected String getEmail() {
     return email;
   }
 
-  private String getPassword() {
+  protected String getPassword() {
     return password;
   }
 

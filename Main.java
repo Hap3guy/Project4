@@ -4,6 +4,7 @@ import java.io.*;
 class Main {
 
   private static ArrayList<Account> accounts = new ArrayList<Account>();
+  private static ArrayList<MasterAccount> masterAccounts = new ArrayList<MasterAccount>();
 
   public static String input() {
     Scanner user_input = new Scanner(System.in);
@@ -23,7 +24,7 @@ class Main {
     System.out.flush();  
   }
 
-  public static String getWord(String type) {
+  public static String testWord(String type) {
     System.out.println("Please enter " + testArticle(type) + ":");
     ArrayList<String> errors = new ArrayList<String>();
     while (true) {
@@ -45,7 +46,7 @@ class Main {
     }
   }
 
-  public static String getEmail() {
+  public static String testEmail() {
     System.out.println("Enter an email address:");
     while (true) {
       String testMe = input();
@@ -57,7 +58,7 @@ class Main {
     }
   }
 
-  public static String getPassword() {
+  public static String testPassword() {
     System.out.println("Enter a password:");
     while (true) {
       String testMe = input();
@@ -114,6 +115,8 @@ class Main {
       File myObj = new File("datafile.txt");
       if (myObj.createNewFile()) {
         System.out.println("File created: " + myObj.getName());
+      }else if (myObj.length() == 0) {
+        System.out.println("datafile.txt is empty!");
       } else {
         importDataFile();
       }
@@ -129,6 +132,9 @@ class Main {
       for (Account i : accounts) {
         myWriter.write(Arrays.toString(i.getInfo()));
       }
+      for (MasterAccount i : masterAccounts) {
+        myWriter.write(Arrays.toString(i.getInfo()));
+      }
       myWriter.close();
       System.out.println("Updated datafile.txt");
     } catch (IOException e) {
@@ -139,7 +145,16 @@ class Main {
 
   public static void createAccount() {
     createDataFile();
-    accounts.add(new Account(capFirstChar(getWord("first name")), capFirstChar(getWord("last name")), getEmail(), getPassword()));
+    String[] accountTypes = {"Regular Account", "Master Account"};
+    int accountType = itemPicker("Choose what type of account you want to create:", accountTypes);
+    switch (accountType) {
+      case 1:
+        accounts.add(new Account(capFirstChar(testWord("first name")), capFirstChar(testWord("last name")), testEmail(), testPassword()));
+        break;
+      case 2:
+        masterAccounts.add(new MasterAccount(capFirstChar(testWord("first name")), capFirstChar(testWord("last name")), testEmail(), testPassword(), capFirstChar(testWord("role"))));
+        break;
+    }
     System.out.println("Account created successfully!");
     updateDataFile();
     input();
@@ -162,6 +177,10 @@ class Main {
       System.out.println(accounts.indexOf(i) + 1);
       i.printAccount();
     }
+    for (MasterAccount i : masterAccounts) {
+      System.out.println(masterAccounts.indexOf(i) + 1);
+      i.printAccount();
+    }
   }
 
   public static Account accountPicker() {
@@ -177,21 +196,34 @@ class Main {
     }
   }
 
+  // public static MasterAccount accountPicker() {
+  //   listAccounts();
+  //   while (true) {
+  //     String testMe = input();
+  //     int parsedInput;
+  //     if (testMe.matches("^[1-" + Integer.toString(masterAccounts.size()) + "]$")) {
+  //       return masterAccounts.get(Integer.parseInt(testMe) - 1);
+  //     } else {
+  //       System.out.println("Invalid input. Type a number between 1 and " + Integer.toString(masterAccounts.size()));
+  //     }
+  //   }
+  // }
+
   public static void updateAccount() {
     System.out.println("Enter the number of the account you want to update:");
     Account chosenAccount = accountPicker();
     switch (itemPicker("Choose what you would like to update:", chosenAccount.getInfo())) {
       case 1:
-        chosenAccount.setFirstname(capFirstChar(getWord("first name")));
+        chosenAccount.setFirstname(capFirstChar(testWord("first name")));
         break;
       case 2:
-        chosenAccount.setLastname(capFirstChar(getWord("last name")));
+        chosenAccount.setLastname(capFirstChar(testWord("last name")));
         break;
       case 3:
-        chosenAccount.setEmail(getEmail());
+        chosenAccount.setEmail(testEmail());
         break;
       case 4:
-        chosenAccount.setPassword(getPassword());
+        chosenAccount.setPassword(testPassword());
         break;
     }
     updateDataFile();
@@ -210,7 +242,7 @@ class Main {
   public static void emailGenerator() {
     System.out.println("\nYou are creating an email that you can copy & paste to your friends...\n");
 
-    // EmailGenerator myEmail = new EmailGenerator(getWord("first name"),getWord("last name"), getWord("favorite color"), getword("favorite food"), getWord("favorite animal"), getword("noun"), getWord("adjective"), itemPicker("Choose a greeting:", myEmail.greetings), itemPicker("Choose a farewell:", myEmail.farwells));
+    // EmailGenerator myEmail = new EmailGenerator(testWord("first name"),testWord("last name"), testWord("favorite color"), getword("favorite food"), testWord("favorite animal"), getword("noun"), testWord("adjective"), itemPicker("Choose a greeting:", myEmail.greetings), itemPicker("Choose a farewell:", myEmail.farwells));
     input();
   }
 
