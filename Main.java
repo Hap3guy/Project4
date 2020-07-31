@@ -1,3 +1,5 @@
+
+
 import java.util.*;
 import java.io.*;
 
@@ -178,53 +180,67 @@ class Main {
       i.printAccount();
     }
     for (MasterAccount i : masterAccounts) {
-      System.out.println(masterAccounts.indexOf(i) + 1);
+      System.out.println(accounts.size() + masterAccounts.indexOf(i) + 1);
       i.printAccount();
     }
   }
 
-  public static Account accountPicker() {
+  public static int accountPicker() {
     listAccounts();
     while (true) {
       String testMe = input();
       int parsedInput;
-      if (testMe.matches("^[1-" + Integer.toString(accounts.size()) + "]$")) {
-        return accounts.get(Integer.parseInt(testMe) - 1);
+      if (testMe.matches("^[1-" + Integer.toString(accounts.size() + masterAccounts.size()) + "]$")) {
+        return Integer.parseInt(testMe) - 1;
       } else {
-        System.out.println("Invalid input. Type a number between 1 and " + Integer.toString(accounts.size()));
+        System.out.println("Invalid input. Type a number between 1 and " + Integer.toString(accounts.size() + masterAccounts.size()));
       }
     }
   }
 
-  // public static MasterAccount accountPicker() {
-  //   listAccounts();
-  //   while (true) {
-  //     String testMe = input();
-  //     int parsedInput;
-  //     if (testMe.matches("^[1-" + Integer.toString(masterAccounts.size()) + "]$")) {
-  //       return masterAccounts.get(Integer.parseInt(testMe) - 1);
-  //     } else {
-  //       System.out.println("Invalid input. Type a number between 1 and " + Integer.toString(masterAccounts.size()));
-  //     }
-  //   }
-  // }
+  public static void updateAccountOverload(Account a) {
+    switch (itemPicker("Choose what you would like to update:", a.getInfo())) {
+      case 1:
+        a.setFirstname(capFirstChar(testWord("first name")));
+        break;
+      case 2:
+        a.setLastname(capFirstChar(testWord("last name")));
+        break;
+      case 3:
+        a.setEmail(testEmail());
+        break;
+      case 4:
+        a.setPassword(testPassword());
+        break;
+    }
+  }
+
+  public static void updateAccountOverload(MasterAccount a) {
+    switch (itemPicker("Choose what you would like to update:", a.getInfo())) {
+      case 1:
+        a.setFirstname(capFirstChar(testWord("first name")));
+        break;
+      case 2:
+        a.setLastname(capFirstChar(testWord("last name")));
+        break;
+      case 3:
+        a.setEmail(testEmail());
+        break;
+      case 4:
+        a.setPassword(testPassword());
+        break;
+    }
+  }
 
   public static void updateAccount() {
     System.out.println("Enter the number of the account you want to update:");
-    Account chosenAccount = accountPicker();
-    switch (itemPicker("Choose what you would like to update:", chosenAccount.getInfo())) {
-      case 1:
-        chosenAccount.setFirstname(capFirstChar(testWord("first name")));
-        break;
-      case 2:
-        chosenAccount.setLastname(capFirstChar(testWord("last name")));
-        break;
-      case 3:
-        chosenAccount.setEmail(testEmail());
-        break;
-      case 4:
-        chosenAccount.setPassword(testPassword());
-        break;
+    int accountNum = accountPicker();
+    if (accountNum < accounts.size()) {
+      Account chosenAccount = accounts.get(accountNum);
+      updateAccountOverload(chosenAccount);
+    } else {
+      MasterAccount chosenAccount = masterAccounts.get(accountNum - accounts.size());
+      updateAccountOverload(chosenAccount);
     }
     updateDataFile();
     System.out.println("Sucessfully updated the account.");
@@ -233,7 +249,12 @@ class Main {
 
   public static void deleteAccount() {
     System.out.println("Enter the number of the account you want to delete:");
-    accounts.remove(accountPicker());
+    int accountNum = accountPicker();
+    if (accountNum < accounts.size()) {
+      accounts.remove(accountNum);
+    } else {
+      masterAccounts.remove(accountNum - accounts.size());
+    }
     updateDataFile();
     System.out.println("Account deleted successfully.");
     input();

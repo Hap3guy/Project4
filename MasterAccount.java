@@ -24,6 +24,10 @@ class MasterAccount extends Account {
   private String getRole() {
     return role;
   }
+
+  public String[] getInfo() {
+    return info;
+  }
   
   public void printAccount() {
     System.out.println("First name: " + getFirstname());
