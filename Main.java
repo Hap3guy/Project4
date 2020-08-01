@@ -100,10 +100,17 @@ class Main {
       String data = myReader.nextLine();
       String[] split = data.split("\\]\\[", 0);
       accounts.clear();
+      masterAccounts.clear();
       for (String s : split) {
         s = s.replace("[","").replace("]","");
         String[] subsplit = s.split(", ", 0);
-        accounts.add(new Account(subsplit[0], subsplit[1], subsplit[2], subsplit[3]));
+        if (subsplit.length == 4) {
+          accounts.add(new Account(subsplit[0], subsplit[1], subsplit[2], subsplit[3]));
+        } else if (subsplit.length == 5) {
+          masterAccounts.add(new MasterAccount(subsplit[0], subsplit[1], subsplit[2], subsplit[3], subsplit[4]));
+        } else {
+          System.out.println("Unknown expression in datafile.txt: \"" + subsplit + "\" (list #" + s + ")");
+        }
       }
       myReader.close();
     } catch (FileNotFoundException e) {
