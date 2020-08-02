@@ -1,19 +1,9 @@
 class MasterAccount extends Account {
 
   private String role;
-  private String[] info = {"firstname", "lastname", "email", "password", "role"};
 
   public void setRole(String r) {
     role = r;
-    info[4] = r;
-  }
-
-  public void setInfo() {
-    info[0] = firstname;
-    info[1] = lastname;
-    info[2] = email;
-    info[3] = password;
-    info[4] = role;
   }
 
   public MasterAccount(String fn, String ln, String e, String p, String r) {
@@ -24,7 +14,12 @@ class MasterAccount extends Account {
   private String getRole() {
     return role;
   }
-  
+
+  public String[] getInfo() {
+    String[] info = {getFirstname(), getLastname(), getEmail(), getPassword(), getRole()};
+    return info;
+  }
+
   public void printAccount() {
     System.out.println("First name: " + getFirstname());
     System.out.println("Last name: " + getLastname());

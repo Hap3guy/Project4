@@ -4,38 +4,21 @@ class Account {
   protected String lastname;
   protected String email;
   protected String password;
-  protected String[] info = {"firstname", "lastname", "email", "password"};
 
   public void setFirstname(String fn) {
     firstname = fn;
-    info[0] = fn;
-
   }
 
   public void setLastname(String ln) {
     lastname = ln;
-    info[1] = ln;
   }
 
   public void setEmail(String e) {
     email = e;
-    info[2] = e;
   }
 
   public void setPassword(String p) {
     password = p;
-    info[3] = p;
-  }
-
-  public void setInfo() {
-    info[0] = firstname;
-    info[1] = lastname;
-    info[2] = email;
-    info[3] = password;
-  }
-
-  public String[] getInfo() {
-    return info;
   }
 
   public Account(String fn, String ln, String e, String p) {
@@ -59,6 +42,11 @@ class Account {
 
   protected String getPassword() {
     return password;
+  }
+
+  public String[] getInfo() {
+    String[] info = {getFirstname(), getLastname(), getEmail(), getPassword()};
+    return info;
   }
 
   public void printAccount() {

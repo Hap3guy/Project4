@@ -236,6 +236,9 @@ class Main {
       case 4:
         a.setPassword(testPassword());
         break;
+      case 5:
+        a.setRole(capFirstChar(testWord("role")));
+        break;
     }
   }
 
