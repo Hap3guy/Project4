@@ -95,6 +95,7 @@ class Main {
 
   public static void importDataFile() {
     try {
+      boolean importFail = false;
       File myObj = new File("datafile.txt");
       Scanner myReader = new Scanner(myObj);
       String data = myReader.nextLine();
@@ -110,9 +111,14 @@ class Main {
           masterAccounts.add(new MasterAccount(subsplit[0], subsplit[1], subsplit[2], subsplit[3], subsplit[4]));
         } else {
           System.out.println("Unknown expression in datafile.txt: \"" + s + "\"");
+          importFail = true;
         }
       }
       myReader.close();
+      if (importFail) {
+        input();
+        callMenu();
+      }
     } catch (FileNotFoundException e) {
       System.out.println("Unable to read datafile.txt");
       e.printStackTrace();
@@ -281,9 +287,29 @@ class Main {
 
   public static void callMenu() {
     String[] menu = {"Create Account Tutorial", "Create Account", "Update Account", "Delete Account", "List All Accounts", "Email Generator","Quit"};
+    String[] altMenu = {"Create Account Tutorial", "Create Account", "Quit"};
     clearScreen();
     System.out.println("-- Project4 --");
-    menuProgram(itemPicker("This is the main menu.", menu));
+    File myObj = new File("datafile.txt");
+    if (myObj.length() == 0) {
+      altMenuProgram(itemPicker("This is the main menu when datafile.txt is empty.", altMenu));
+    } else {
+      menuProgram(itemPicker("This is the main menu.", menu));
+    }
+  }
+
+  public static void altMenuProgram(int programNumber) {
+    switch (programNumber) {
+      case 1:
+        createAccountTutorial();
+        break;
+      case 2:
+        createAccount();
+        break;
+      case 3:
+        System.out.println("See ya later!");
+        java.lang.System.exit(0);
+    }
   }
 
   public static void menuProgram(int programNumber) {
@@ -308,8 +334,6 @@ class Main {
         break;
       case 6:
         emailGenerator();
-        // System.out.println("Sorry, this program isn't available yet :(");
-        // input();
         break;
       case 7:
         System.out.println("See ya later!");
