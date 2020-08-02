@@ -109,7 +109,7 @@ class Main {
         } else if (subsplit.length == 5) {
           masterAccounts.add(new MasterAccount(subsplit[0], subsplit[1], subsplit[2], subsplit[3], subsplit[4]));
         } else {
-          System.out.println("Unknown expression in datafile.txt: \"" + subsplit + "\" (list #" + s + ")");
+          System.out.println("Unknown expression in datafile.txt: \"" + s + "\"");
         }
       }
       myReader.close();
