@@ -273,7 +273,9 @@ class Main {
   public static void emailGenerator() {
     System.out.println("\nYou are creating an email that you can copy & paste to your friends...\n");
 
-    // EmailGenerator myEmail = new EmailGenerator(testWord("first name"),testWord("last name"), testWord("favorite color"), getword("favorite food"), testWord("favorite animal"), getword("noun"), testWord("adjective"), itemPicker("Choose a greeting:", myEmail.greetings), itemPicker("Choose a farewell:", myEmail.farwells));
+    EmailGenerator myEmail = new EmailGenerator();
+    myEmail.email(capFirstChar(testWord("first name")), capFirstChar(testWord("last name")), testWord("favorite color"), testWord("favorite food"), testWord("favorite animal (PLURAL)"), testWord("noun"), testWord("adjective"), itemPicker("Choose a greeting:", myEmail.greetings), itemPicker("Choose a farewell:", myEmail.farewells));
+    myEmail.printEmail();
     input();
   }
 
@@ -305,9 +307,9 @@ class Main {
         input();
         break;
       case 6:
-        // emailGenerator();
-        System.out.println("Sorry, this program isn't available yet :(");
-        input();
+        emailGenerator();
+        // System.out.println("Sorry, this program isn't available yet :(");
+        // input();
         break;
       case 7:
         System.out.println("See ya later!");

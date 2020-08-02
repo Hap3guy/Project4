@@ -48,7 +48,7 @@ class EmailGenerator{
     bye = farewells[b - 1];
   }
 
-  EmailGenerator(String fn, String ln, String c, String f, String a, String n, String adj, int h, int b) {
+  public void email(String fn, String ln, String c, String f, String a, String n, String adj, int h, int b) {
     setFirstname(fn);
     setLastname(ln);
     setColor(c);
@@ -73,7 +73,7 @@ class EmailGenerator{
 
     System.out.println("Here is your message to send to all your friends:\n");
 
-    // System.out.println(hi + "\n\n   My name is " + name + " and I like eating " + food + " while petting " + color + " " + animal + ". One final thing that I would like to tell you is that I have " testArticle(adjective) + " " + noun + ".\n\n" + bye + "\n~" + name);
+    System.out.println(hi + "\n\n   My name is " + name + " and I like eating " + food + " while petting " + color + " " + animal + ". One final thing that I would like to tell you is that I have " + testArticle(adjective) + " " + noun + ".\n\n" + bye + "\n~" + name);
   }
 
 }
